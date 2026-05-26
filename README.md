@@ -1,5 +1,47 @@
 # m-sct
 
+## IMPORTANT: launch the PATCHED Dolphin, not the normal one
+
+The full F8 -> F9 workflow depends on the patched Dolphin build from:
+
+https://github.com/thanks-cohn/dolphin-copy-locations
+
+If you open normal Dolphin from the application launcher/menu,
+F9 will only copy ONE file path.
+
+You must launch the patched Dolphin manually:
+
+```bash
+~/dev/dolphin-f9/build/bin/dolphin
+```
+
+Then the workflow becomes:
+
+```text
+move to file
+F8
+move to file
+F8
+move to file
+F8
+F9
+paste newline-separated file paths
+```
+
+Example result:
+
+```text
+/home/user/Pictures/Screenshots/a1.png
+/home/user/Pictures/Screenshots/a2.png
+/home/user/Pictures/Screenshots/a3.png
+```
+
+`m-sct` handles keyboard-first marking.
+
+`dolphin-copy-locations` handles exporting the selected set.
+
+# m-sct
+
 `m-sct` is a keyboard-first micro-selection tool for Dolphin and X11 Linux desktops.
 
 It lets you move through files normally, then press one key to mark or unmark the currently focused file.
