@@ -1,41 +1,88 @@
 # dolphin-ergonomix
 
-Dolphin Ergonomix is a collection of small KDE Dolphin workflow improvements.
+Dolphin Ergonomix is a plug-and-play toolbox of small KDE Dolphin workflow improvements.
 
 The goal is simple:
 
-Make Linux file management feel immediate, practical, keyboard-capable, and clipboard-friendly.
+```text
+git clone
+chmod +x install.sh
+./install.sh
+profit
+```
 
-This repo is for tiny tools, scripts, patches, and ideas that make Dolphin feel better without replacing Dolphin.
+This repo is for tiny scripts, service menus, patches, and launcher helpers that make Dolphin feel immediate, practical, keyboard-capable, and clipboard-friendly.
 
-## Current direction
+## Quick install
 
-Dolphin Ergonomix focuses on:
+```bash
+git clone git@github.com:thanks-cohn/dolphin-ergonomix.git
+cd dolphin-ergonomix
+chmod +x install.sh
+./install.sh
+```
 
-- file manager momentum
-- copy/move/send workflows
-- clipboard-as-data workflows
-- GUI to terminal bridges
-- right-click service actions
-- small Dolphin patches
-- launchers and local overrides
+Then restart Dolphin or run:
 
-## Current tools and ideas
+```bash
+kbuildsycoca6
+```
 
-Planned/imported modules:
+## What installs today
 
-- 1UP
-- SendHere
-- n0drag
-- C-frame
-- dolphin-copy-locations integration
+### 1UP
+
+A Dolphin service-menu tool for selected files.
+
+Current actions:
+
+```text
+1UP: Move selected item(s) up one directory
+1UP: Copy selected file location(s)
+```
+
+The location-copy action copies selected paths as newline-separated text.
+
+## Commands
+
+Install everything:
+
+```bash
+./install.sh
+```
+
+Check installed state:
+
+```bash
+./status.sh
+```
+
+Uninstall installed Ergonomix files:
+
+```bash
+./uninstall.sh
+```
+
+## Installed locations
+
+```text
+~/.local/bin/1up
+~/.local/share/kio/servicemenus/1up.desktop
+```
 
 ## Philosophy
 
 The filesystem should feel fast in your hands.
 
-Not everything needs to be a giant app.
-Sometimes the correct fix is a tiny script, a service menu, or a three-line patch.
+Not everything needs to be a giant app. Sometimes the correct fix is a tiny script, a service menu, or a three-line patch.
 
 Dolphin already has the foundation.
 Ergonomix is about making it feel obvious, immediate, and powerful.
+
+## Related project
+
+For patched native multi-file Copy Location behavior inside Dolphin itself, see:
+
+```text
+https://github.com/thanks-cohn/dolphin-copy-locations
+```
