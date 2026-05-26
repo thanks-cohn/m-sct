@@ -8,7 +8,7 @@ The goal is simple:
 git clone
 chmod +x install.sh
 ./install.sh
-profit
+BOOM
 ```
 
 This repo is for tiny scripts, service menus, patches, and launcher helpers that make Dolphin feel immediate, practical, keyboard-capable, and clipboard-friendly.
