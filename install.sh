@@ -1,58 +1,27 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+
 mkdir -p "$HOME/.local/bin"
 mkdir -p "$HOME/.local/share/kio/servicemenus"
+mkdir -p "$HOME/.local/state/n0drag"
 
-cat > "$HOME/.local/bin/1up" <<'SCRIPT'
-#!/usr/bin/env bash
-set -euo pipefail
+install -m755 "$ROOT/scripts/1up" "$HOME/.local/bin/1up"
+install -m755 "$ROOT/scripts/c-frame" "$HOME/.local/bin/c-frame"
+install -m755 "$ROOT/scripts/n0drag" "$HOME/.local/bin/n0drag"
+install -m755 "$ROOT/scripts/spacer" "$HOME/.local/bin/spacer"
+install -m755 "$ROOT/scripts/sendhere" "$HOME/.local/bin/sendhere"
 
-ACTION="${1:-}"
-shift || true
-
-case "$ACTION" in
-move-up)
-    for path in "$@"; do
-        parent="$(dirname "$path")"
-        grandparent="$(dirname "$parent")"
-        mv "$path" "$grandparent/"
-    done
-    ;;
-
-copy-locations)
-    printf '%s\n' "$@" | xclip -selection clipboard
-    ;;
-
-*)
-    echo "unknown action"
-    exit 1
-    ;;
-esac
-SCRIPT
-
-chmod +x "$HOME/.local/bin/1up"
-
-cat > "$HOME/.local/share/kio/servicemenus/1up.desktop" <<'DESKTOP'
-[Desktop Entry]
-Type=Service
-MimeType=all/allfiles;
-Actions=OneUpMove;OneUpCopy;
-X-KDE-ServiceTypes=KonqPopupMenu/Plugin
-
-[Desktop Action OneUpMove]
-Name=1UP: Move Up One Directory
-Icon=go-up
-Exec=/home/big-bro/.local/bin/1up move-up %F
-
-[Desktop Action OneUpCopy]
-Name=1UP: Copy File Location(s)
-Icon=edit-copy
-Exec=/home/big-bro/.local/bin/1up copy-locations %F
-DESKTOP
+install -m644 "$ROOT/servicemenus/1up.desktop" "$HOME/.local/share/kio/servicemenus/1up.desktop"
+install -m644 "$ROOT/servicemenus/c-frame.desktop" "$HOME/.local/share/kio/servicemenus/c-frame.desktop"
+install -m644 "$ROOT/servicemenus/n0drag.desktop" "$HOME/.local/share/kio/servicemenus/n0drag.desktop"
+install -m644 "$ROOT/servicemenus/sendhere.desktop" "$HOME/.local/share/kio/servicemenus/sendhere.desktop"
+install -m644 "$ROOT/servicemenus/spacer.desktop" "$HOME/.local/share/kio/servicemenus/spacer.desktop"
 
 kbuildsycoca6 >/dev/null 2>&1 || true
 
 echo
 echo "Dolphin Ergonomix installed."
-echo "Restart Dolphin if needed."
+echo "Installed: 1UP, c-frame, n0drag, SendHere, SpacEr."
+echo "Restart Dolphin if actions do not appear immediately."
